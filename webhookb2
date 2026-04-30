@@ -1,0 +1,90 @@
+# give step by step procedure clearly
+
+## 🗒️ Answer
+
+### **Docker Automation using Webhook (Step-by-Step)**
+
+### **Step 1: Start Required Services**
+
+1. Start **Jenkins** → [http://localhost:8080](http://localhost:8080)
+2. Start **Docker Desktop**
+3. Run in terminal:
+
+   ```
+   ngrok http 8080
+   ```
+
+👉 This exposes Jenkins publicly
+
+---
+
+### **Step 2: Create Jenkins Job**
+
+4. Open Jenkins → Click **New Item**
+5. Select **Freestyle/Pipeline Project**
+6. In **Source Code Management** → Select **Git**
+7. Enter your GitHub repo URL
+
+---
+
+### **Step 3: Enable Webhook Trigger**
+
+8. Scroll to **Build Triggers**
+9. Select:
+   ✔ *GitHub hook trigger for GITScm polling*
+
+---
+
+### **Step 4: Configure GitHub Webhook**
+
+10. Open GitHub repo → **Settings → Webhooks**
+11. Click **Add Webhook**
+12. Paste Payload URL:
+
+```
+http://<ngrok-url>/github-webhook/
+```
+
+13. Click **Add Webhook**
+
+---
+
+### **Step 5: Add Build Step**
+
+14. In Jenkins → Build → Add Step
+15. Example:
+
+```
+echo Hello Jenkins
+```
+
+---
+
+### **Step 6: Push Code**
+
+16. Run:
+
+```
+git add .
+git commit -m "update"
+git push
+```
+
+---
+
+### **Step 7: Automatic Build**
+
+17. GitHub → sends webhook → Jenkins triggers build automatically
+
+👉 This creates a basic CI/CD pipeline with GitHub + Jenkins [[2](https://www.docker.com/blog/docker-and-jenkins-build-robust-ci-cd-pipelines/)]
+
+---
+
+## 🌐 Sources
+
+1. [medium.com - CI/CD pipeline GitHub Jenkins Docker](https://medium.com/@thirumalaivasangj/how-i-built-a-ci-cd-pipeline-using-github-jenkins-docker-and-aws-beginner-to-practical-2d39cc03c9e3)
+2. [docker.com - Build CI/CD pipelines](https://www.docker.com/blog/docker-and-jenkins-build-robust-ci-cd-pipelines/)
+3. [blazemeter.com - Jenkins GitHub CI/CD](https://www.blazemeter.com/blog/cicd-pipeline-jenkins-github)
+4. [devops.dev - CI/CD guide](https://blog.devops.dev/complete-ci-cd-pipeline-guide-for-windows-git-github-jenkins-spring-boot-44bb6853c8a4)
+5. [geeksforgeeks.org - Integrating Jenkins with GitHub](https://www.geeksforgeeks.org/devops/integrating-jenkins-with-popular-github/)
+6. [github.com - Jenkins CI/CD Pipeline](https://github.com/harshartz/Jenkins-CI-CD-Pipeline-with-Docker-and-GitHub)
