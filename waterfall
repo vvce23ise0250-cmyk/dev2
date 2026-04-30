@@ -1,0 +1,30 @@
+update plugins in jenkins
+create jenkinsfile
+slack
+create workspace
+https://my.slack.com/services/new/jenkins-ci
+select workspace
+copy auth token 
+
+
+jenkins:
+tools -- goto maven installations --click on maven installations 
+add maven
+name=Maven3
+uncheck auto installations
+maven home path=c:Pro...
+save
+ new freestyle item-- 
+build steps -- windows batch command -- echo jenkins 
+In post build actions select Slack notification
+and check all the options
+save
+
+slack notifications in jenkins
+manage jenkins - system
+slack
+workspace=vvce
+Credential=add -secret text
+secret=copied token
+id=any name
+channel=channel_name from slack website
